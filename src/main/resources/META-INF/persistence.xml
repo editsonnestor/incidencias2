@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="3.0" xmlns="https://jakarta.ee/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
+  <persistence-unit name="muni101" transaction-type="RESOURCE_LOCAL">
+    <class>org.logistica.bean.Usuario</class>
+    <class>org.logistica.bean.Oficina</class>
+    <class>org.logistica.bean.Equipo</class>
+    <class>org.logistica.bean.Incidencia</class>
+    <properties>
+      <property name="jakarta.persistence.jdbc.driver" value="org.firebirdsql.jdbc.FBDriver"/>
+      <!--property name="jakarta.persistence.jdbc.url" value="jdbc:firebirdsql:127.0.0.1/3050:D:/Proyectos/Editson/logistica/data/INCIDENCIA.FDB?encoding=UTF8"/-->
+      <property name="jakarta.persistence.jdbc.url" value="jdbc:firebirdsql://127.0.0.1:3050//home/renzo/data/INCIDENCIA.FDB?encoding=UTF8"/>
+      <property name="jakarta.persistence.jdbc.user" value="sysdba"/>
+      <property name="jakarta.persistence.jdbc.password" value="masterkey"/>
+      <property name="jakarta.persistence.schema-generation.database.action" value="none"/>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.FirebirdDialect"/>
+      <property name="eclipselink.logging.level" value="FINE"/>
+    </properties>
+  </persistence-unit>
+</persistence>
+ 

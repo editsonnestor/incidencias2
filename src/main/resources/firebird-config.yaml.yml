@@ -1,0 +1,27 @@
+version: 10.9
+
+services:
+  firebird:
+    image: jacobalberty/firebird:5.0.1 
+    container_name: firebird-container
+    restart: always
+    environment:
+      - ISC_PASSWORD=masterkey 
+      - FIREBIRD_DATABASE=INCIDENCIA.FDB 
+    ports:
+      - 3050:3050
+    volumes:
+      - firebird-data:/firebird/data 
+      - firebird-conf:/firebird/etc  
+      - firebird-logs:/firebird/log  
+    networks:
+      - firebird-network
+
+volumes:
+  firebird-data:
+  firebird-conf:
+  firebird-logs:
+
+networks:
+  firebird-network:
+    driver: bridge

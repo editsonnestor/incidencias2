@@ -1,0 +1,58 @@
+*{
+    font-size: 12px;
+    font-family: sans-serif;
+    line-height: 100%;
+}
+#cambio:hover{
+    background-color: rgba(138,149,151,0.8);
+}
+.bloquear {
+    pointer-events: none;
+    cursor: default;
+}
+.btn-group, btn-group-vertical{
+    position: absolute !important;
+}
+body{
+    background-image: url("../imagen/Fondo.png");
+}
+
+.derecha{
+    display: inline-flex;
+}
+
+.fondocolor:hover{
+    color: #0B0C25;
+}
+
+.fondocolorsub:hover{
+    color: #0B0C25;
+}
+
+.btnaccion:hover{
+    background: #09F1A4;
+    border: solid 4px rgba(172,184,180,0.3);
+    color: purple;
+    font-weight: bold;
+}
+
+.enlace:hover{
+    color: purple;
+}
+
+span.error{
+    padding: 4px 0px 0px 25px;
+    flex-wrap:wrap;
+    width:100%;
+    text-align: right;
+    color: purple;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+.Botones {
+    /*background-color: #17a2b8;
+    text-align: right;
+    padding: 1rem;*/
+    border-radius: 0 0 10px 10px;
+}

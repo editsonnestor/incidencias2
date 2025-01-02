@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: firebird-deployment
+  labels:
+    app: firebird
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: firebird
+  template:
+    metadata:
+      labels:
+        app: firebird
+    spec:
+      containers:
+      - name: firebird
+        image: jacobalberty/firebird:5.0.1
+        ports:
+        - containerPort: 3050
+        env:
+        - name: ISC_USER
+          value: ${GIT_USER}
+        - name: ISC_PASSWORD
+          value: ${USER_PASSWORD}
+        volumeMounts:
+        - mountPath: /firebird/data
+          name: firebird-data
+        - mountPath: /firebird/conf
+          name: firebird-config
+      volumes:
+      - name: firebird-data
+        persistentVolumeClaim:
+          claimName: firebird-data-pvc
+      - name: firebird-config
+        configMap:
+          name: firebird-config
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: firebird-service
+  labels:
+    app: firebird
+spec:
+  type: ClusterIP
+  ports:
+  - port: 3050
+    targetPort: 3050
+  selector:
+    app: firebird
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: firebird-data-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: firebird-config
+data:
+  firebird.conf: |
+    WireCrypt = Enabled
+    DefaultDbCachePages = 2048
+    LockMemSize = 524288
+    LockSemCount = 100
